@@ -16,13 +16,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <title>PHP & MongoDB</title>
+     <title>PHP & Cassandra</title>
      <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   </head>
   <body>
 
     <div class="container">
-    <h1>PHP & MongoDB</h1>
+    <h1>PHP & Cassandra</h1>
 
     <?php
 
@@ -34,16 +34,18 @@
 
     <table class="table table-borderd">
        <tr>
+          <th>Id</th>
           <th>Name</th>
           <th>Details</th>
        </tr>
        <?php
           require 'config.php';
-          $books = $collection->find([]);
-          foreach($books as $book) {
+          $result = $session->execute("SELECT * FROM books");
+          foreach($result as $row) {
              echo "<tr>";
-             echo "<td>".$book->name."</td>";
-             echo "<td>".$book->detail."</td>";
+             echo "<td>".$row['id']."</td>";
+             echo "<td>".$row['name']."</td>";
+             echo "<td>".$row['detail']."</td>";
              echo "</tr>";
           };
        ?>

@@ -6,25 +6,22 @@ if (!isset($_SESSION['valid'])){
   $_SESSION['success'] = "Try again";
   header("location: index.php");
 }
-/*
+
 if(isset($_POST['submit'])){
+  require 'config.php';
 
-   require 'config.php';
+  $options = array('arguments' => array((int)$_POST['code'],$_POST[name],$_POST[detail]));
+  $session->execute("INSERT INTO books (id, name ,detail) VALUES (?,?,?)",$options);
 
-   $insertOneResult = $collection->insertOne([
-       'name' => $_POST['name'],
-       'detail' => $_POST['detail'],
-   ]);
-
-   $_SESSION['success'] = "Book created successfully";
-   header("Location: reg.php");
-}*/
+  $_SESSION['success'] = "Book created successfully";
+  header("Location: reg.php");
+}
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-   <title>PHP & MongoDB</title>
+   <title>PHP & Cassandra</title>
    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 </head>
 <body>
@@ -35,13 +32,17 @@ if(isset($_POST['submit'])){
    <a href="reg.php" class="btn btn-primary">Back</a>
 
    <form method="POST">
-      <div class="form-group">
+     <div class="form-group">
+        <strong>Id:</strong>
+        <input type="int" name="code" required="" class="form-control" placeholder="Id">     </div>
+     <div class="form-group">
          <strong>Name:</strong>
          <input type="text" name="name" required="" class="form-control" placeholder="Name">
       </div>
       <div class="form-group">
          <strong>Detail:</strong>
-         <textarea class="form-control" name="detail" placeholder="Detail" placeholder="Detail"></textarea>
+         <input type="text" name="detail" required="" class="form-control" placeholder="Detail">
+
       </div>
       <div class="form-group">
          <button type="submit" name="submit" class="btn btn-success">Submit</button>
