@@ -4,6 +4,12 @@
    if(isset($_POST['find'])){
     header("Location: list.php?id=".$_POST['find_s']."");
    }
+   if(isset($_POST['name'])){
+    header("Location: list.php?name=".$_POST['find_s']."");
+   }
+   if(isset($_POST['detail'])){
+    header("Location: list.php?detail=".$_POST['find_s']."");
+   }
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +49,9 @@
           <input type="text" name="find_s" required="" class="form-control" placeholder="Password">
        </div>
        <div class="form-group">
-          <button type="submit" name="find" class="btn btn-success">Find</button>
+          <button type="submit" name="find" class="btn btn-success">id</button>
+          <button type="submit" name="name" class="btn btn-success">name</button>
+          <button type="submit" name="detail" class="btn btn-success">detail</button>
        </div>
     </form>
     </div>

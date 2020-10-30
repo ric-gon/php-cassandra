@@ -1,13 +1,16 @@
 <?php
   session_start();
 
-   if(isset($_POST['find'])){
-    header("Location: list.php?id=".$_POST['find_s']."");
-   }
-
    require 'config.php';
-
-   $result = $session->execute("SELECT * FROM books WHERE id = (int)$_GET[id]");
+   if ((int)$_GET['id']!=NULL){
+    $result = $session->execute("SELECT * FROM books WHERE id = (int)$_GET[id]");
+   }
+   if ($_GET['name']!=NULL){
+    $result = $session->execute("SELECT * FROM books WHERE name = '$_GET[name]' ALLOW FILTERING");
+   }
+   if ($_GET['detail']!=NULL){
+    $result = $session->execute("SELECT * FROM books WHERE detail = '$_GET[detail]' ALLOW FILTERING");
+   }
 ?>
 <!DOCTYPE html>
 <html>
