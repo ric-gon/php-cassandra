@@ -27,7 +27,7 @@
        }
 
     ?>
-
+    <a href="reg.php" class="btn btn-primary">Back</a>
     <table class="table table-borderd">
        <tr>
           <th>Id</th>
