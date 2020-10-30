@@ -4,6 +4,10 @@
    if(isset($_POST['find'])){
     header("Location: list.php?id=".$_POST['find_s']."");
    }
+
+   require 'config.php';
+
+   $result = $session->execute("SELECT * FROM books WHERE id = (int)$_GET[id]");
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +19,14 @@
 
     <div class="container">
     <h1>PHP & Cassandra</h1>
-    <a href="login.php" class="btn btn-primary">Login</a>
+
+    <?php
+
+       if(isset($_SESSION['success'])){
+          echo "<div class='alert alert-success'>".$_SESSION['success']."</div>";
+       }
+
+    ?>
 
     <table class="table table-borderd">
        <tr>
@@ -24,8 +35,6 @@
           <th>Details</th>
        </tr>
        <?php
-          require 'config.php';
-          $result = $session->execute("SELECT * FROM books");
           foreach($result as $row) {
              echo "<tr>";
              echo "<td>".$row['id']."</td>";
@@ -35,17 +44,9 @@
           };
        ?>
 
-    </table>
 
-    <form method="POST">
-       <div class="form-group">
-          <strong>find:</strong>
-          <input type="text" name="find_s" required="" class="form-control" placeholder="Password">
-       </div>
-       <div class="form-group">
-          <button type="submit" name="find" class="btn btn-success">Find</button>
-       </div>
-    </form>
+
+    </table>
     </div>
 
   </body>

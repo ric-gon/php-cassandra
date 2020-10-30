@@ -10,7 +10,7 @@ if (!isset($_SESSION['valid'])){
 if(isset($_POST['submit'])){
   require 'config.php';
 
-  $options = array('arguments' => array((int)$_POST['code'],$_POST[name],$_POST[detail]));
+  $options = array('arguments' => array((int)$_POST['code'],$_POST['name'],$_POST['detail']));
   $session->execute("INSERT INTO books (id, name ,detail) VALUES (?,?,?)",$options);
 
   $_SESSION['success'] = "Book created successfully";

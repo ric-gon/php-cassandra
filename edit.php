@@ -17,7 +17,7 @@ foreach ($result as $key) {
 
 if(isset($_POST['submit'])){
 
-  $options = array('arguments' => array($_POST[name],$_POST[detail]));
+  $options = array('arguments' => array($_POST['name'],$_POST['detail']));
   $session->execute("UPDATE books SET name = ?, detail = ? WHERE id = (int)$_GET[id]", $options);
 
    $_SESSION['success'] = "Book updated successfully";
@@ -35,7 +35,7 @@ if(isset($_POST['submit'])){
 <body>
 
 <div class="container">
-   <h1>Create Book</h1>
+   <h1>Edit Book</h1>
    <a href="reg.php" class="btn btn-primary">Back</a>
 
    <form method="POST">
