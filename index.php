@@ -1,7 +1,15 @@
 <?php
-  session_start();
+session_start();
+  if(isset($_POST['login'])){
+    $b="text";
+    $b=$_POST['login'];
+    $_SESSION['user_var']=$b;
 
-   if(isset($_POST['login'])){
+    header("Location: config.php");
+    header("Location: reg.php");
+  }
+  //"<a href='delete.php?id=".$row['id']."
+   /*if(isset($_POST['login'])){
 
      if($_POST['user'] == 'usuario' && $_POST['password'] == 'clave'){
        $_SESSION['valid'] = true;
@@ -11,44 +19,18 @@
        $_SESSION['success'] = "Try again";
        header("Location: index.php");
      }
-   }
+   }*/
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-     <title>PHP & MongoDB</title>
+     <title>PHP & Cassandra</title>
      <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   </head>
   <body>
 
     <div class="container">
-    <h1>PHP & MongoDB</h1>
-
-    <?php
-
-       if(isset($_SESSION['success'])){
-          echo "<div class='alert alert-success'>".$_SESSION['success']."</div>";
-       }
-
-    ?>
-
-    <table class="table table-borderd">
-       <tr>
-          <th>Name</th>
-          <th>Details</th>
-       </tr>
-       <?php
-          require 'config.php';
-          $books = $collection->find([]);
-          foreach($books as $book) {
-             echo "<tr>";
-             echo "<td>".$book->name."</td>";
-             echo "<td>".$book->detail."</td>";
-             echo "</tr>";
-          };
-       ?>
-
-    </table>
+    <h1>PHP & Cassandra</h1>
 
     <form method="POST">
        <div class="form-group">
