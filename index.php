@@ -1,8 +1,16 @@
 <?php
   session_start();
 
-   if(isset($_POST['find'])){
-    header("Location: list.php?id=".$_POST['find_s']."");
+   if(isset($_POST['login'])){
+
+     if($_POST['user'] == 'usuario' && $_POST['password'] == 'clave'){
+       $_SESSION['valid'] = true;
+       $_SESSION['success'] = "login successful";
+       header("Location: reg.php");
+     } else {
+       $_SESSION['success'] = "Try again";
+       header("Location: index.php");
+     }
    }
 ?>
 <!DOCTYPE html>
@@ -15,7 +23,14 @@
 
     <div class="container">
     <h1>PHP & Cassandra</h1>
-    <a href="login.php" class="btn btn-primary">Login</a>
+
+    <?php
+
+       if(isset($_SESSION['success'])){
+          echo "<div class='alert alert-success'>".$_SESSION['success']."</div>";
+       }
+
+    ?>
 
     <table class="table table-borderd">
        <tr>
@@ -39,11 +54,15 @@
 
     <form method="POST">
        <div class="form-group">
-          <strong>find:</strong>
-          <input type="text" name="find_s" required="" class="form-control" placeholder="Password">
+          <strong>User:</strong>
+          <input type="text" name="user" required="" class="form-control" placeholder="User">
        </div>
        <div class="form-group">
-          <button type="submit" name="find" class="btn btn-success">Find</button>
+          <strong>Password:</strong>
+          <input type="text" name="password" required="" class="form-control" placeholder="Password">
+       </div>
+       <div class="form-group">
+          <button type="submit" name="login" class="btn btn-success">Login</button>
        </div>
     </form>
     </div>
